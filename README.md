@@ -126,3 +126,33 @@ Through analysis of the CSV:
 Jagtap, A.D., Shin, Y., Kawaguchi, K., Karniadakis, G.E. (2022).
 *Deep Kronecker neural networks: A general framework for neural networks with adaptive activation functions.*
 Neurocomputing, 468, 165–180.
+
+---
+
+## External Image Testing (No Ground Truth)
+
+To assess generalization, the pipeline was tested on external images sourced from the web — different cameras, viewpoints, rack colors, and lighting conditions. No ground truth labels were available; results were evaluated qualitatively.
+
+### Observations
+
+**Detection generalizes reasonably well.** The model successfully detected tubes across orange, blue, and red racks, and handled different tube densities. The most impressive result was `reversible-microtube-racks-3_1.webp` where 26 tubes were detected across a crowded angled rack.
+
+**Angle predictions are unreliable on non-overhead images.** The orientation model was trained exclusively on directly overhead images. On angled shots (product photos taken from the side), the predicted angles are not meaningful — the joint-to-tab direction changes with viewpoint. On near-overhead images the angles look plausible but cannot be verified without ground truth.
+
+**Low confidence on external images.** Detection confidence scores (shown before the `|` in labels) are noticeably lower than on validation data (0.1–0.5 vs 0.6–0.75), indicating the model is less certain. This is expected distribution shift behavior.
+
+**Some tubes missed entirely.** Images with tubes at the very edge of the frame, heavily occluded tubes, or very small tubes (far from camera) are often missed. The model was trained on tubes that occupied a consistent portion of the 640×480 frame.
+
+### Example Results
+
+| Image | Tubes in Image | Tubes Detected | Notes |
+|-------|---------------|----------------|-------|
+| 1.5mL-Minicentrifuge-Rack | 6 | 6 | Near-overhead, good detection |
+| 71CtpBMMlaL (blue rack) | 8 | 4 | Missed orange-capped tubes (different appearance) |
+| 71KTO+kuLpL (orange rack) | 2 | 3 | 1 FP, angled shot |
+| reversible-microtube-racks-3 | ~40 | 26 | Best external result, crowded rack |
+| reversible-microtube-racks-6 | ~12 | 6 | Only detected rightmost column |
+
+### Key Takeaway
+
+The system is well-calibrated for its training distribution (overhead lab images, specific rack types). Generalization to product photography and angled shots is limited — primarily a data diversity problem rather than an architectural one.
