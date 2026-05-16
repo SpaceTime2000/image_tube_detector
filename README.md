@@ -150,8 +150,10 @@ To assess generalization, the pipeline was tested on external images sourced fro
 | 1.5mL-Minicentrifuge-Rack | 6 | 6 | Near-overhead, good detection |
 | 71CtpBMMlaL (blue rack) | 8 | 4 | Missed orange-capped tubes (different appearance) |
 | 71KTO+kuLpL (orange rack) | 2 | 3 | 1 FP, angled shot |
-| reversible-microtube-racks-3 | ~40 | 26 | Best external result, crowded rack |
-| reversible-microtube-racks-6 | ~12 | 6 | Only detected rightmost column |
+| microcentrifuge-tube-stand-96-well | 2 | 4 | 2 FPs, very different visual style (dark/blue tint) |
+| mtr-7 (orange rack, side view) | 15 | 6 | Heavily occluded, angled shot, most tubes missed |
+| reversible-microtube-racks-3 | 60 | 26 | Best external result, crowded rack |
+| reversible-microtube-racks-6 | 16 | 6 | Only detected partial column |
 
 ### Key Takeaway
 
