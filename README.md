@@ -14,7 +14,7 @@ Two-stage pipeline for detecting microcentrifuge tube positions and orientations
 | Within 15° | 100.0% |
 | Within 30° | 100.0% |
 
-14 held-out validation images, 76 tubes total. One false positive in ca8fd5c6-color.png — YOLO detected a circular region near a pen at confidence 0.28, well below the 0.62–0.75 range of true positives in the same image.
+14 held-out validation images, 76 tubes total. One false positive in ca8fd5c6-color.png — YOLO detected a circular region (probably a fingerprint smudge) at confidence 0.28, well below the 0.62–0.75 range of true positives in the same image.
 
 ---
 
